@@ -5,7 +5,7 @@ library(glmnet)
 library(latex2exp)
 
 
-setwd("")
+#setwd("")
 options(warn=-1)
 load("dataall.RData")
 
@@ -480,7 +480,7 @@ differencedc <- ggplot(tablefinal[(tablefinal$indicator == 1) & (tablefinal$vari
   scale_color_manual(labels = c(TeX(r"(  $\beta_0$-$\beta_1$)"), TeX(r"($\beta_0$-$\beta_2$)"), TeX(r"($\beta_1$-$\beta_2$)")), values = c("#386cb0", "#fdb462", "#7fc97f")) + 
   geom_errorbar(aes(ymin = low, ymax = high),  position=position_dodge(0.6)) + xlab("variable") + ylab("") + theme_classic() + theme(axis.text.x = element_text(angle = 15, vjust = 0.5))
 differencedc
-ggsave("differencedc.jpg", differencedc)
+#ggsave("differencedc.jpg", differencedc)
 
 
 
