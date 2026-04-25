@@ -19,3 +19,11 @@ The subfolder Simulation-result contains all the simulation results. To be speci
 3) valueresult1.RData, valueresult2.RData, valueresult3.RData are the optimal policy value inference results under scenario1, scenario2 and scenario3, respectively. They are used to produce Figure 3.
 
 
+### Real data
+Folder Real data contains the data and code to reproduce real data analysis results and figures in Section 6.2.
+
+dataall.Rdata contains the Warfarin dosage data used for real data analysis. 
+
+Real data-Coefficient inference.R conducts linear coefficients inference using both IPW and AW debiased estimators, identifies the significant variables corresponding to three different medicine dosage. It produces the point estimators and 95% CI for \beta_1, \beta_2 and \beta_0 in Figure 4, and point estimators and 95% CI for \beta_0-\beta_1, \beta_0-\beta_2 and \beta_1-\beta_2 in Figure 5. 
+
+Real data-Optimal policy value.R performs optimal policy’s value inference, and compares the results with OLS oracle estimator.  It produces the optimal value estimation and 95% CI in Figure 6. 
