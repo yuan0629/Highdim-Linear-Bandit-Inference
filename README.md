@@ -24,7 +24,11 @@ The subfolder Simulation-result contains all the simulation results. To be speci
 
 Folder Real data contains the data and code to reproduce real data analysis results and figures in Section 6.2.
 
-dataall.RData contains the Warfarin dosage data used for real data analysis.
+IWPC1.csv contains the raw downloaded data. Data-cleaning.R cleans and processes the raw data in IWPC1.csv to generate dataall.RData.
+
+dataall.Rdata contains the Warfarin dosage data used for real data analysis. 
+
+data_dictionary.csv provides the data dictionary that describes each of the 93 covariate columns in dataall.Rdata
 
 Real data-Coefficient inference.R conducts linear coefficients inference using both IPW and AW debiased estimators, identifies the significant variables corresponding to three different medicine dosage. It produces the point estimators and 95% CI for $\beta_1$, $\beta_2$ and $\beta_0$ in Figure 4, and point estimators and 95% CI for $\beta_0-\beta_1$, $\beta_0-\beta_2$ and $\beta_1-\beta_2$ in Figure 5.
 
