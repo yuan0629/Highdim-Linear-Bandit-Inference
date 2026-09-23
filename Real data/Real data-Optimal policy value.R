@@ -3,11 +3,8 @@ library(DebiasInfer)
 library(caret)
 library(glmnet)
 library(latex2exp)
-
-
-setwd("")
 options(warn=-1)
-load("dataall.RData")
+load(here::here("Real data", "dataall.RData"))
 
 Time <- nrow(dataallnew)
 d <- ncol(dataallnew) + 1
@@ -28,6 +25,8 @@ d <- ncol(dataallnew) + 1
 eta <- 0.1
 s <- 25
 Time <- 5528
+Iteration <- 1
+iter <- 1
 
 Converge2 <- matrix(0, ncol = 4, nrow = Time*Iteration)
 
@@ -185,6 +184,6 @@ ggplot(data = Converge) + geom_line(aes(x = Time, y = value, color = method)) + 
   geom_ribbon(data = Converge[Converge$method == "Online",], aes(x = Converge[Converge$method == "Online","Time"], ymin = Converge[Converge$method == "Online", "low"], ymax = Converge[Converge$method == "Online","high"]), fill = "#386cb0", alpha = 0.3)
 p1 <- ggplot(data = Converge) + geom_line(aes(x = Time, y = value, color = method)) +  scale_color_manual(values = c("#fdb462", "#386cb0")) + coord_cartesian(ylim = c(0,1)) +theme_classic()+
   geom_ribbon(data = Converge[Converge$method == "Online",], aes(x = Converge[Converge$method == "Online","Time"], ymin = Converge[Converge$method == "Online", "low"], ymax = Converge[Converge$method == "Online","high"]), fill = "#386cb0", alpha = 0.3)
-# ggsave("value.jpg", plot = p1)
+# ggsave(here::here("Real data", "value.jpg"), plot = p1)
 
 

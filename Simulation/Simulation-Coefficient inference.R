@@ -5,13 +5,13 @@ library(truncnorm)
 #library(hdi)
 
 options(warn=-1)
-setwd("")
 
 set.seed(629122)
 
 ### three scenarios to produce Figure 2 Top, Middle and Bottom ###
 
 # parameters (scenario 1)
+scenario <- 1
 Time <- 300 # time horizon T
 d <- 600  # dimension of covariate X_t
 sigma1 <- sigma0 <- 0.1 # noise level
@@ -25,6 +25,7 @@ Iteration <- 100
 
 
 # parameters (scenario 2)
+# scenario <- 2
 # Time <- 600 # time horizon T
 # d <- 1000  # dimension of covariate X_t
 # sigma1 <- sigma0 <- 0.1 # noise level
@@ -38,6 +39,7 @@ Iteration <- 100
 
 
 # parameters (scenario 3)
+# scenario <- 3
 # Time <- 1000 # time horizon T
 # d <- 2000  # dimension of covariate X_t
 # sigma1 <- sigma0 <- 0.1 # noise level
@@ -51,10 +53,10 @@ Iteration <- 100
 
 ### Setting 1: IPW estimator (\gamma=1/3 and 1/2)
 gamma <- 1/3 
-c2 <- 4 # define the exploration probability \varepsilon_t=c_2t^{-gamma}; change between "gamma <- 1/3" and "gamma <- 1/2" to 
+c2 <- 5 # define the exploration probability \varepsilon_t=c_2t^{-gamma}; change between "gamma <- 1/3" and "gamma <- 1/2" to 
             #modify \gamma to produce the results in Figure 2
-eta <- 0.09 # stepsize
-mu <- 0.0005 # parameter to construct the de-correlation matrix; \mu_{T1} in (9) of paper
+eta <- 0.12 # stepsize
+mu <- 0.02 # parameter to construct the de-correlation matrix; \mu_{T1} in (9) of paper
 
 
 # IPW estimator
@@ -176,7 +178,16 @@ for (iter in 1:Iteration) {
 
 
 # save result
-save(result1, file = "scenario3result1.RData")
+if (gamma == 1/3) {
+  save(result1,
+       file = here::here("Simulation", "Simulation-result",
+                         paste0("scenario", scenario, "-inf-result1.RData")))
+} else if (gamma == 1/2) {
+  result2 <- result1
+  save(result2,
+       file = here::here("Simulation", "Simulation-result",
+                         paste0("scenario", scenario, "-inf-result2.RData")))
+}
 
 ### Setting 2: offline debiased Lasso (Montanari 2014)
 
@@ -252,7 +263,9 @@ for (iter in 1:Iteration) {
 }
 
 # save result
-save(result3, file = "scenario3result3.RData")
+save(result3,
+     file = here::here("Simulation", "Simulation-result",
+                       paste0("scenario", scenario, "-inf-result3.RData")))
 
 
 
@@ -262,8 +275,9 @@ save(result3, file = "scenario3result3.RData")
 ### Setting 3: AW estimator
 
 K <- 150 # number of iterations to solve (10) to obtain the de-correlation matrix M_T^{(i)}
-mu <- 0.0005 # parameter to construct the de-correlation matrix; \mu_{T2} in (10)
+mu <- 0.01 # parameter to construct the de-correlation matrix; \mu_{T2} in (10)
 Iteration <- 100
+eta <- 0.2
 
 result4 <- matrix(0, nrow = Iteration*cut, ncol = 9)  # store the point and interval estimators
 result4[,9] <- rep(c(1:cut), Iteration)
@@ -393,7 +407,9 @@ for (iter in 1:Iteration) {
   
 }
 
-save(result4, file = "scenario1result4.RData")
+save(result4,
+     file = here::here("Simulation", "Simulation-result",
+                       paste0("scenario", scenario, "-inf-result4.RData")))
 
 
 

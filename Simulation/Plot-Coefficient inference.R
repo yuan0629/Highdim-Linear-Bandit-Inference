@@ -9,7 +9,6 @@ library(ggpubr)
 ### parameter inference Figure 2###
 
 options(warn=-1)
-setwd("Simulation-result/")
 
 
 ## scenario 1 (Top)
@@ -23,10 +22,10 @@ beta1 <- matrix(c(runif(s0, 0.5, 1), rep(0, d-s0)), ncol = 1)
 beta0 <- matrix(c(runif(s0, 0.5, 1), rep(0, d-s0)), ncol = 1)
 Iteration <- 100
 
-load("scenario1-inf-result1.RData")
-load("scenario1-inf-result2.RData")
-load("scenario1-inf-result3.RData")
-load("scenario1-inf-result4.RData")
+load(here::here("Simulation", "Simulation-result", "scenario1-inf-result1.RData"))
+load(here::here("Simulation", "Simulation-result", "scenario1-inf-result2.RData"))
+load(here::here("Simulation", "Simulation-result", "scenario1-inf-result3.RData"))
+load(here::here("Simulation", "Simulation-result", "scenario1-inf-result4.RData"))
 
 exist <- c(1:Iteration)
 
@@ -91,7 +90,7 @@ figparameter11 <- ggplot() +
   geom_errorbar(data = valuefinal, aes(x = variable, ymin = low, ymax = high, group = method, color = method),  position=position_dodge(0.6)) + xlab("variable") + ylab("") + theme_classic() + theme(axis.text.x = element_text(angle = 15, vjust = 0.5)) +
   ggtitle(TeX(r"(Scenario(1) \  $\beta_1$)"))
 
-#ggsave("figparameter11.jpg", figparameter11, units = "px", width = 1704, height = 750)
+#ggsave(here::here("Simulation", "Simulation-result", "figparameter11.jpg"), figparameter11, units = "px", width = 1704, height = 750)
 
 
 # beta0 (top right)
@@ -150,7 +149,7 @@ figparameter10 <- ggplot() +
   geom_errorbar(data = valuefinal, aes(x = variable, ymin = low, ymax = high, group = method, color = method),  position=position_dodge(0.6)) + xlab("variable") + ylab("") + theme_classic() + theme(axis.text.x = element_text(angle = 15, vjust = 0.5)) +
   ggtitle(TeX(r"(Scenario(1) \  $\beta_0$)"))
 
-#ggsave("figparameter10.jpg", figparameter10, units = "px", width = 1704, height = 750)
+#ggsave(here::here("Simulation", "Simulation-result", "figparameter10.jpg"), figparameter10, units = "px", width = 1704, height = 750)
 
 
 
@@ -166,10 +165,10 @@ beta1 <- matrix(c(runif(s0, 0.5, 1), rep(0, d-s0)), ncol = 1)
 beta0 <- matrix(c(runif(s0, 0.5, 1), rep(0, d-s0)), ncol = 1)
 Iteration <- 100
 
-load("scenario2-inf-result1.RData")
-load("scenario2-inf-result2.RData")
-load("scenario2-inf-result3.RData")
-load("scenario2-inf-result4.RData")
+load(here::here("Simulation", "Simulation-result", "scenario2-inf-result1.RData"))
+load(here::here("Simulation", "Simulation-result", "scenario2-inf-result2.RData"))
+load(here::here("Simulation", "Simulation-result", "scenario2-inf-result3.RData"))
+load(here::here("Simulation", "Simulation-result", "scenario2-inf-result4.RData"))
 
 exist <- c(1:Iteration)
 
@@ -303,10 +302,10 @@ beta1 <- matrix(c(runif(s0, 0.5, 1), rep(0, d-s0)), ncol = 1)
 beta0 <- matrix(c(runif(s0, 0.5, 1), rep(0, d-s0)), ncol = 1)
 Iteration <- 100
 
-load("scenario3-inf-result1.RData")
-load("scenario3-inf-result2.RData")
-load("scenario3-inf-result3.RData")
-load("scenario3-inf-result4.RData")
+load(here::here("Simulation", "Simulation-result", "scenario3-inf-result1.RData"))
+load(here::here("Simulation", "Simulation-result", "scenario3-inf-result2.RData"))
+load(here::here("Simulation", "Simulation-result", "scenario3-inf-result3.RData"))
+load(here::here("Simulation", "Simulation-result", "scenario3-inf-result4.RData"))
 
 exist <- c(1:Iteration)
 
@@ -438,7 +437,9 @@ totalparameter <- ggarrange(figparameter11, figparameter10, figparameter21, figp
                             ncol = 2, nrow = 3,  align = "hv", 
                             common.legend = TRUE)
 
-ggsave("totalparameter.pdf", plot = totalparameter, units = "px", width = 3700, height = 3000)
+ggsave(here::here("Simulation", "Simulation-result", "totalparameter.pdf"),
+       plot = totalparameter, device = grDevices::cairo_pdf,
+       units = "px", width = 3700, height = 3000)
 
 
 

@@ -9,12 +9,11 @@ library(ggpubr)
 ### optimal policy value Figure 3 ###
 
 options(warn=-1)
-setwd("Simulation-result/")
 
 
-load("valueresult1.RData")
-load("valueresult2.RData")
-load("valueresult3.RData")
+load(here::here("Simulation", "Simulation-result", "valueresult1.RData"))
+load(here::here("Simulation", "Simulation-result", "valueresult2.RData"))
+load(here::here("Simulation", "Simulation-result", "valueresult3.RData"))
 Time <- 10000
 Iteration <- 100
 
@@ -62,6 +61,8 @@ totalvalue <- ggarrange(
 )
 
 
-ggsave("totalvalue.pdf", plot = totalvalue, units = "in", width = 11, height = 3.81)
+ggsave(here::here("Simulation", "Simulation-result", "totalvalue.pdf"),
+       plot = totalvalue, device = grDevices::cairo_pdf,
+       units = "in", width = 11, height = 3.81)
 
 

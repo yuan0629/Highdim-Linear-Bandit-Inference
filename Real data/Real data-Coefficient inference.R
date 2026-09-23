@@ -3,11 +3,8 @@ library(DebiasInfer)
 library(caret)
 library(glmnet)
 library(latex2exp)
-
-
-#setwd("")
 options(warn=-1)
-load("dataall.RData")
+load(here::here("Real data", "dataall.RData"))
 
 Time <- nrow(dataallnew)
 d <- ncol(dataallnew) + 1
@@ -382,7 +379,7 @@ fig0 <- ggplot(tablefinal[which(tablefinal$variable %in% finallist), ], aes(x = 
   geom_errorbar(aes(ymin = low, ymax = high),  position=position_dodge(0.6)) + 
   scale_color_manual(values = c("#386cb0", "#fdb462", "#7fc97f")) + xlab("variable") + ylab("") + theme_classic() + theme(axis.text.x = element_text(angle = 15, vjust = 0.5))
 fig0
-# ggsave("fig0.jpg", fig0)
+# ggsave(here::here("Real data", "fig0.jpg"), fig0)
 
 
 
@@ -412,7 +409,7 @@ fig1 <- ggplot(tablefinal[which(tablefinal$variable %in% finallist), ], aes(x = 
   geom_errorbar(aes(ymin = low, ymax = high),  position=position_dodge(0.6)) + 
   scale_color_manual(values = c("#386cb0", "#fdb462", "#7fc97f")) + xlab("variable") + ylab("") + theme_classic() + theme(axis.text.x = element_text(angle = 15, vjust = 0.5))
 fig1
-#ggsave("fig1.jpg", fig1)
+#ggsave(here::here("Real data", "fig1.jpg"), fig1)
 
 
 
@@ -440,7 +437,7 @@ fig2 <- ggplot(tablefinal[which(tablefinal$variable %in% finallist), ], aes(x = 
   geom_errorbar(aes(ymin = low, ymax = high),  position=position_dodge(0.6)) + 
   scale_color_manual(values = c("#386cb0", "#fdb462", "#7fc97f")) + xlab("variable") + ylab("") + theme_classic() + theme(axis.text.x = element_text(angle = 15, vjust = 0.5))
 fig2
-#ggsave("fig2.jpg", fig2)
+#ggsave(here::here("Real data", "fig2.jpg"), fig2)
 
 
 
@@ -460,7 +457,7 @@ differencenodc <- ggplot(tablefinal[(tablefinal$indicator == 1) & (tablefinal$va
   scale_color_manual(labels = c(TeX(r"(  $\beta_0$-$\beta_1$)"), TeX(r"($\beta_0$-$\beta_2$)"), TeX(r"($\beta_1$-$\beta_2$)")), values = c("#386cb0", "#fdb462", "#7fc97f")) + 
   geom_errorbar(aes(ymin = low, ymax = high),  position=position_dodge(0.6)) + xlab("variable") + ylab("") + theme_classic() + theme(axis.text.x = element_text(angle = 15, vjust = 0.5))
 differencenodc
-#ggsave("differencenodc.jpg", differencenodc)
+#ggsave(here::here("Real data", "differencenodc.jpg"), differencenodc)
 
 
 
@@ -480,7 +477,7 @@ differencedc <- ggplot(tablefinal[(tablefinal$indicator == 1) & (tablefinal$vari
   scale_color_manual(labels = c(TeX(r"(  $\beta_0$-$\beta_1$)"), TeX(r"($\beta_0$-$\beta_2$)"), TeX(r"($\beta_1$-$\beta_2$)")), values = c("#386cb0", "#fdb462", "#7fc97f")) + 
   geom_errorbar(aes(ymin = low, ymax = high),  position=position_dodge(0.6)) + xlab("variable") + ylab("") + theme_classic() + theme(axis.text.x = element_text(angle = 15, vjust = 0.5))
 differencedc
-#ggsave("differencedc.jpg", differencedc)
+#ggsave(here::here("Real data", "differencedc.jpg"), differencedc)
 
 
 

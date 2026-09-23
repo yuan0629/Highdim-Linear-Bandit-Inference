@@ -5,14 +5,14 @@ library(truncnorm)
 #library(hdi)
 
 options(warn=-1)
-setwd("")
 
 set.seed(629122)
 
 ### three scenarios to produce Figure 3 Left, Center and Right ###
 
 # parameters (scenario 1)
-Time <- 300 # time horizon T
+scenario <- 1
+Time <- 10000 # time horizon T
 d <- 600  # dimension of covariate X_t
 sigma1 <- sigma0 <- 0.1 # noise level
 s0 <- 3 # true sparsity
@@ -23,7 +23,8 @@ Iteration <- 100
 
 
 # parameters (scenario 2)
-# Time <- 600 # time horizon T
+# scenario <- 2
+# Time <- 10000 # time horizon T
 # d <- 1000  # dimension of covariate X_t
 # sigma1 <- sigma0 <- 0.1 # noise level
 # s0 <- 8 # true sparsity
@@ -34,7 +35,8 @@ Iteration <- 100
 
 
 # parameters (scenario 3)
-# Time <- 1000 # time horizon T
+# scenario <- 3
+# Time <- 10000 # time horizon T
 # d <- 2000  # dimension of covariate X_t
 # sigma1 <- sigma0 <- 0.1 # noise level
 # s0 <- 10 # true sparsity
@@ -63,8 +65,6 @@ for (iter in 1:Iteration) {
   Sigma1 <- Sigma0 <- matrix(0, ncol = d, nrow = d)
   g0 <- g1 <- matrix(0, ncol = 1, nrow = d)
   GT1 <- GT0 <- WT1 <- WT2 <- Vhat <- Vreal <- Vhatt <- Vrealt <- 0
-  S1 <- S0 <- rep(0, cut)
-  
   set.seed(iter)
   for (t in 1:Time) {
     
@@ -143,8 +143,11 @@ for (iter in 1:Iteration) {
 }
 
 # save result
-valueresult3 <- result3
-save(valueresult3, file = "valueresult3.RData")
+result_name <- paste0("valueresult", scenario)
+assign(result_name, result3)
+save(list = result_name,
+     file = here::here("Simulation", "Simulation-result",
+                       paste0(result_name, ".RData")))
 
 
 

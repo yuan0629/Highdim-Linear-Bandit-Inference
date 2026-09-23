@@ -2,6 +2,10 @@
 
 Code and data to reproduce simulation results, figures, and real data analysis results for the paper "Regret Minimization and Statistical Inference in Online Decision Making with High-dimensional Covariates"
 
+## Running the code
+
+Open `Highdim-Linear-Bandit-Inference.Rproj` before running the scripts. All input and output paths are constructed with `here::here()`, so no manual setting of the working directory is required. The R package `here` is therefore required in addition to the packages loaded by each script.
+
 ## Organization
 
 ### Simulation
@@ -20,7 +24,7 @@ The subfolder Simulation-result contains all the simulation results. To be speci
 
 Folder Real data contains the data and code to reproduce real data analysis results and figures in Section 6.2.
 
-dataall.Rdata contains the Warfarin dosage data used for real data analysis.
+dataall.RData contains the Warfarin dosage data used for real data analysis.
 
 Real data-Coefficient inference.R conducts linear coefficients inference using both IPW and AW debiased estimators, identifies the significant variables corresponding to three different medicine dosage. It produces the point estimators and 95% CI for $\beta_1$, $\beta_2$ and $\beta_0$ in Figure 4, and point estimators and 95% CI for $\beta_0-\beta_1$, $\beta_0-\beta_2$ and $\beta_1-\beta_2$ in Figure 5.
 
